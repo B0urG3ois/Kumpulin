@@ -1,0 +1,202 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Register Member</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-col size="12">
+          <ion-card>
+            <ion-col size="12">
+              <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input type="text" [(ngModel)]="email"> </ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input type="password" [(ngModel)]="password"> </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Confirm Password</ion-label>
+                <ion-input type="password" [(ngModel)]="cpassword"> </ion-input>
+              </ion-item>
+              <ion-col class="ion-text-center">
+                <ion-button (click)="register()">
+                 Register
+                </ion-button>
+                <ion-button [routerLink]="['/','login']">
+                  Register as Bank Sampah
+                 </ion-button>
+              </ion-col>
+            </ion-col>
+          </ion-card>
+        </ion-col>
+      </ion-grid>
+</ion-content> -->
+
+<ion-content class="ion-padding login auth-page">
+
+  <div class="auth-content">
+
+    <div class="ion-padding-horizontal ion-text-center">
+      <div class="logo"></div>
+      <h3 class="ion-no-margin">
+        <ion-text color="light" class="fw700">
+          Sign Up As User
+        </ion-text>
+      </h3>
+    </div>
+
+    <form class="list-form" [formGroup]="validations_form" (ngSubmit)="register(validations_form.value)">
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="contact" item-start></ion-icon>
+          First Name
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="firstname"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.firstname">
+        <p class="ion-ion-text text08"
+          *ngIf="validations_form.get('firstname').hasError(validation.type) && (validations_form.get('firstname').dirty || validations_form.get('firstname').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="contact" item-start></ion-icon>
+          Last Name
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="lastname"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.lastname">
+        <p class="ion-ion-text text08"
+          *ngIf="validations_form.get('lastname').hasError(validation.type) && (validations_form.get('lastname').dirty || validations_form.get('lastname').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container> 
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="contact" item-start></ion-icon>
+          Address
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="address"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.address">
+        <p class="ion-ion-text text08"
+          *ngIf="validations_form.get('address').hasError(validation.type) && (validations_form.get('address').dirty || validations_form.get('address').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="call" item-start></ion-icon>
+          Phone Number
+        </ion-label>
+        <ion-input color="secondary" type="text" formControlName="phone"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.phone">
+        <p class="ion-ion-text text08"
+          *ngIf="validations_form.get('phone').hasError(validation.type) && (validations_form.get('phone').dirty || validations_form.get('phone').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="mail" item-start></ion-icon>
+          Email
+        </ion-label>
+        <ion-input color="secondary" type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.email">
+        <p class="ion-ion-text text08"
+          *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Password
+        </ion-label>
+        <ion-input color="secondary" type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.password">
+        <p color="ion-ion-text warning" class="text08"
+          *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+          <ion-text color="warning">
+            T{{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <ion-item class="ion-no-padding animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock" item-start></ion-icon>
+          Confirmation Password
+        </ion-label>
+        <ion-input color="secondary" type="password" formControlName="cpassword"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of validation_messages.cpassword">
+        <p color="ion-ion-text warning" class="text08"
+          *ngIf="validations_form.get('cpassword').hasError(validation.type) && (validations_form.get('cpassword').dirty || validations_form.get('cpassword').touched)">
+          <ion-text color="warning">
+            {{ validation.message }}
+          </ion-text>
+        </p>
+      </ng-container>
+
+      <div class="ion-margin-top">
+        <ion-button class="ion-icon-left" size="medium" expand="full" shape="round" color="dark" type="submit"  [disabled]="!validations_form.valid" tappable>
+          <ion-icon name="log-in"></ion-icon>
+          Sign Up
+        </ion-button>
+
+        <br>
+
+        <p class="ion-text-center">
+          <ion-text color="light">
+            Or Sign Up As:
+          </ion-text>
+        </p>
+
+        <ion-grid class="btn-group">
+          <ion-row>
+            <ion-col size="3"></ion-col>
+            <ion-col size="6">
+              <ion-button shape="round" expand="full" color="secondary" (click)="goToRegisMerchant()">
+                Merchant
+              </ion-button>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </div>
+    </form>
+
+    <div class="ion-text-center ion-margin-top">
+      <span (click)="goLoginPage()" tappable>
+        <ion-text color="light">
+          <strong>I have an account!</strong>
+        </ion-text>
+      </span>
+    </div>
+
+  </div>
+</ion-content>

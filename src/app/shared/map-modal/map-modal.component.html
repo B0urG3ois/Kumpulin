@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>pick location</ion-title>
+    <ion-buttons slot='primary'>
+      <ion-button (click)='onCancel(lat,lng)'>Ok</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" (mapClick)="onChooseLocation($event)">
+    <agm-marker *ngIf="lat" [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker *ngIf="latTemp" [latitude]="latTemp" [longitude]="lngTemp"  [animation]="'BOUNCE'"></agm-marker>
+  </agm-map>
+</ion-content>

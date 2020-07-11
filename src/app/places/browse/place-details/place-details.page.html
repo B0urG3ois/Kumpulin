@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Place Details</ion-title>
+      <ion-buttons slot="start">
+        <ion-button   [routerLink]="[
+        '/',
+        'places',
+        'tabs',
+        'browse'
+      ]">
+         <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+         </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-grid>
+    <ion-row *ngFor="let p of place">
+          
+        <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2">
+
+          <h3 class="ion-text-center">Trash It</h3>
+          
+          <ion-card>
+            <img src="{{ p.imgUrl }}">
+            <ion-card-content>
+                <b> <p>{{ p.name }} </p></b>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col size="12">
+          
+             <b offset="2">Alamat: </b> {{ p.address }}<br> 
+             <b offset="2"> Masukkan jumlah sampah yang ingin disetor sesuai jenis sampah: </b><br><br>
+             <form [formGroup]="form" (ngSubmit)="saveOrder()">
+               <ion-list>
+                <ion-item *ngFor="let x of p.jenisSampah; let i = index;">
+                  <ion-label positon="floating">{{ x }} : </ion-label>
+                  <ion-input type="number" size="4" formControlName="{{x}}"></ion-input>
+                  <ion-label positon="floating">Kg</ion-label>
+                </ion-item>
+               </ion-list>
+               <ion-col size="12"class="ion-text-center">
+                <ion-button type="submit">
+                  Submit
+                </ion-button>
+                
+              </ion-col>
+             </form>
+
+        
+        </ion-col>
+    
+      </ion-row>
+      </ion-grid>
+</ion-content>

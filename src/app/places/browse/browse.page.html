@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Browse</ion-title>
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+
+        <ion-row>
+          
+            <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2">
+  
+              <h3 class="ion-text-left">Near You</h3>
+              <!-- <ion-content>
+                <app-location-picker></app-location-picker>
+              </ion-content> -->
+<!--               
+              <ion-card>
+                <ion-img src="https://www.maptiler.com/img/map-home.svg"></ion-img>
+      
+              </ion-card> -->
+              <ion-content>
+                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15" [disableDefaultUI]="true">
+                    <agm-marker
+                      [latitude]="lat"
+                      [longitude]="lng"
+                      [label]="'Anda berada disini'"
+                      [iconUrl]='{"url": marker ,"scaledSize": {"height": 50, "width": 50}}'>
+                    </agm-marker>
+                     <!-- [iconUrl]='{"url": "//img.icons8.com/plasticine/100/000000/standing-man.png" ,"scaledSize": {"height": 50, "width": 50}}'> -->
+                    <agm-marker *ngFor="let item of loadedPlaces"
+                      [latitude]="item.coordinateLat"
+                      [longitude]="item.coordinateLng"
+                      (markerClick)="onMarkerClick(item.coordinateLat,item.coordinateLng)"
+                      [animation]="'BOUNCE'"
+                      [label]="{color:'black', text: item.name, fontWeight: 'bold', fontSize:'14'}"
+                      [iconUrl]='{"url": marker ,"scaledSize": {"height": 50, "width": 50}}'>
+                    </agm-marker>
+                  
+                  </agm-map>
+              </ion-content>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+          <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2">
+            <h3 class="ion-text-left">Recommended Place</h3>
+            <ion-card *ngFor="let f of recommededPlace">
+                <ion-img [src]="f.imgUrl"
+                  [routerLink]="[
+                    '/',
+                    'places',
+                    'tabs',
+                    'browse',
+                    f.id
+                  ]"
+              ></ion-img>
+              <ion-card-content>
+                  <p><b>{{ f.name }}</b><br /><br />
+                    jarak dari kamu yaitu {{f.jarak}} km
+                    <br />perkiraan waktu tempuh kamu yaitu {{f.waktu}}
+                  </p>
+              </ion-card-content>
+    
+            </ion-card>
+          </ion-col>
+      
+        </ion-row>
+        <ion-row>
+      
+          <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2" >
+            <h3 class="ion-text-left">List Place</h3>
+            <ion-list>
+              <ion-item *ngFor="let place of loadedPlaces">
+                <ion-thumbnail slot="start" [routerLink]="['/','places','tabs','browse',place.id]">
+                  <ion-img [src]="place.imgUrl"></ion-img>
+                </ion-thumbnail>
+                <ion-label>
+                  <h2>{{ place.name }}</h2>
+                  <p>{{ place.address }}</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+          
+        </ion-row>
+        <ion-row>
+      
+          <!-- <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2">
+            <ion-list>
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img src="https://cdn-image.bisnis.com/posts/2019/02/12/887947/kur170119.jpg" />
+                </ion-thumbnail>
+                <ion-label>
+                  <h2>Test 3</h2>
+                  <p>Description test 3</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-col> -->
+          
+        </ion-row>
+
+      </ion-grid>
+</ion-content>

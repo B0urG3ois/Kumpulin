@@ -1,0 +1,50 @@
+<ion-content class="ion-padding animated fadeIn login auth-page">
+  <div class="theme-bg"></div>
+  <div class="auth-content">
+
+    <div class="ion-padding-horizontal ion-text-center animated fadeInDown">
+      <div class="logo"></div>
+      <h4 class="ion-no-margin">
+        <ion-text color="light" class="fw700">
+          Sign Up
+        </ion-text>  
+      </h4>
+    </div>
+
+    <form>
+      <div>
+        <br>
+        <br>
+        <p class="ion-text-center">
+          <ion-text color="light">
+            Sign Up As:
+          </ion-text>
+        </p>
+
+        <ion-grid class="btn-group">
+          <ion-row>
+            <ion-col size="6">
+              <ion-button shape="round" expand="full" color="secondary" (click)="goToRegisUser()">
+                User
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button shape="round" expand="full" color="secondary" (click)="goToRegisMerchant()">
+                Merchant
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </form>
+
+    <div class="ion-text-center ion-margin-top">
+      <span (click)="goToLoginPage()" class="paz" tappable>
+        <ion-text color="light">
+          Have Account ? <strong>Sign In</strong>
+        </ion-text>
+      </span>
+    </div>
+
+  </div>
+</ion-content>
